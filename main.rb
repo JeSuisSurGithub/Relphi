@@ -1,18 +1,20 @@
+require './voyageur'
 require './reseau'
 require './train'
-require './voyageur'
-require './ligne'
 require './mission'
+require './ligne'
 
-s_vc = Station.new(0, "Versailles Chantiers", 2)
+s_vc = Station.new(0, "Versailles Chantiers", 3)
 s_jej = Station.new(1, "Jouy en Josas", 1)
 s_mp = Station.new(2, "Massy Palaiseau", 2)
-v_vcjej = Voie.new(0, "Versailles Chantiers => Jouy en Josas", s_vc, s_jej)
-v_jejmp = Voie.new(1, "Jouy en Josas => Massy Palaiseau", s_jej, s_mp)
+
+v_vc_jej = Voie.new(0, "Versailles Chantiers => Jouy en Josas", s_vc, s_jej)
+v_jej_mp = Voie.new(1, "Jouy en Josas => Massy Palaiseau", s_jej, s_mp)
+
 t_z20501 = Train.new(0, "Z20501 4 Caisses US", 606)
 
-s_vc.voies = [v_vcjej]
-s_jej.voies = [v_jejmp]
+s_vc.voies = [v_vc_jej]
+s_jej.voies = [v_jej_mp]
 
 ligne_v = Ligne.new(
     0, "Transilien V",
@@ -22,18 +24,18 @@ ligne_v = Ligne.new(
         s_mp
     ],
     [
-        v_vcjej,
-        v_jejmp
+        v_vc_jej,
+        v_jej_mp
     ],
     [
         t_z20501
     ],
     [
         Mission.new(
-            0, "MAVA1",
+            0, "MAVA01",
             t_z20501,
-            [0, 0, 1, 1, 2],
-            [30, 5, 1, 5],
+            [0, 0, 1, 1, 2], # Etapes
+            [30, 5, 1, 5], # Temps
             s_vc,
             10
         )

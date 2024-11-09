@@ -1,5 +1,5 @@
 class Train
-    attr_reader :id, :capacite
+    attr_reader :id, :nom, :capacite
     attr_accessor :voyageurs
 
     def initialize(id, n, c)
